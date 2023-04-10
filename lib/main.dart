@@ -7,21 +7,14 @@ import 'current_location.dart';
 import 'package:out_of_gas/map_utils.dart';
 import 'package:out_of_gas/home.dart';
 import 'package:out_of_gas/pages/first_page.dart';
+import 'package:out_of_gas/pages/helper_page.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-//out of gas respo pk sriram
+      initialRoute: '/first',
+      routes: {
+        '/map': (context) => Home(),
+        '/helper': (context) => Helper(),
+        '/first': (context) => HomePage(),
+      },
+    ));

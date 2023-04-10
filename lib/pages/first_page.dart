@@ -32,7 +32,9 @@ class HomePage extends StatelessWidget {
                 style: TextButton.styleFrom(
                     backgroundColor: Colors.blue,
                     textStyle: const TextStyle(fontSize: 30)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/helper');
+                },
                 child: Text(
                   "Helper ",
                   style: TextStyle(color: Colors.white),
@@ -58,4 +60,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-//Sriram
