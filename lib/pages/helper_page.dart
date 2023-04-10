@@ -22,12 +22,18 @@ class _HelperState extends State<Helper> {
       body: ListView.builder(
         itemCount: 20,
         itemBuilder: (context, position) {
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                position.toString(),
-                style: TextStyle(fontSize: 22.0),
+          return GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/map');
+            },
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  //(position + 1 ).toString(),
+                  "Location : ",
+                  style: TextStyle(fontSize: 22.0),
+                ),
               ),
             ),
           );
