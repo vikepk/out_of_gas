@@ -5,8 +5,10 @@ import 'package:out_of_gas/splash_screen.dart';
 import 'package:out_of_gas/current_location.dart';
 
 import 'package:out_of_gas/map_utils.dart';
-import 'package:out_of_gas/home.dart';
+import 'package:out_of_gas/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
+
+const String a = "Anto";
 
 class Helper extends StatefulWidget {
   const Helper({super.key});
@@ -31,7 +33,7 @@ class _HelperState extends State<Helper> {
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
                   //(position + 1 ).toString(),
-                  "Location : ",
+                  "Location : $a ",
                   style: TextStyle(fontSize: 22.0),
                 ),
               ),
