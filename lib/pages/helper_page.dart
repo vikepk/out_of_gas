@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
 
-import 'package:out_of_gas/current_location.dart';
+import 'package:out_of_gas/services/current_location.dart';
 
 import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
 
-const String a = "Anto";
+const String location = "Junction";
 
 class Helper extends StatefulWidget {
   const Helper({super.key});
@@ -22,19 +22,44 @@ class _HelperState extends State<Helper> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 20,
+        itemCount: 10,
         itemBuilder: (context, position) {
           return GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, '/map');
             },
             child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  //(position + 1 ).toString(),
-                  "Location : $a                           ",
-                  style: TextStyle(fontSize: 22.0),
+              child: SizedBox(
+                width: 10,
+                height: 120,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          //(position + 1 ).toString(),
+                          "Location :" + " $location",
+                          style: TextStyle(fontSize: 24.0),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Petrol needed: 2 L",
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(Icons.arrow_circle_right_outlined),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

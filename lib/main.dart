@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
 
-import 'current_location.dart';
+import 'package:out_of_gas/services/current_location.dart';
 
 import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';

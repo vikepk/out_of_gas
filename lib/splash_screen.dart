@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
-import 'package:out_of_gas/current_location.dart';
+import 'package:out_of_gas/services/current_location.dart';
 
 class splash extends StatefulWidget {
   const splash({super.key});
