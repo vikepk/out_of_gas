@@ -4,8 +4,8 @@ import 'package:out_of_gas/splash_screen.dart';
 
 import 'package:out_of_gas/current_location.dart';
 
-import 'package:out_of_gas/map_utils.dart';
-import 'package:out_of_gas/map.dart';
+import 'package:out_of_gas/services/map_utils.dart';
+import 'package:out_of_gas/services/map.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
