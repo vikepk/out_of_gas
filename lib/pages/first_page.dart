@@ -49,7 +49,9 @@ class HomePage extends StatelessWidget {
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.red,
                         textStyle: const TextStyle(fontSize: 25)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/need_gas');
+                    },
                     child: Text(
                       "Need Gas",
                       style: TextStyle(color: Colors.white),
