@@ -10,10 +10,11 @@ import 'package:out_of_gas/pages/first_page.dart';
 import 'package:out_of_gas/pages/helper_page.dart';
 import 'package:out_of_gas/pages/need_gas.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'package:out_of_gas/firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: '/first',

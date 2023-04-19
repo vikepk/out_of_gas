@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
@@ -6,6 +7,8 @@ import 'package:out_of_gas/services/current_location.dart';
 
 import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';
+
+final name1 = TextEditingController();
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -57,6 +60,16 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
+                  TextField(
+                    controller: name1,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      final name = name1.text;
+                      createuser(name: name);
+                    },
+                    child: Text("Submit"),
+                  )
                 ],
               ),
             ),
@@ -65,4 +78,10 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future createuser({required String name}) async {
+  final docUser = FirebaseFirestore.instance.collection('user').doc('my-id');
+  final json = {'Mobile Number': 78946562, 'Name': name};
+  await docUser.set(json);
 }

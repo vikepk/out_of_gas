@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.1.10
   dropdown_formfield: ^0.1.4
   cloud_firestore: ^4.5.2
+  firebase_core: ^2.10.0
   
 
 dev_dependencies:
