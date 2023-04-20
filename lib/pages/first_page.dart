@@ -82,6 +82,6 @@ class HomePage extends StatelessWidget {
 
 Future createuser({required String name}) async {
   final docUser = FirebaseFirestore.instance.collection('user').doc('my-id');
-  final json = {'Mobile Number': 78946562, 'Name': name};
-  await docUser.set(json);
+  // final json = ;
+  await docUser.set({'Mobile Number': 78946562, 'Name': name});
 }
