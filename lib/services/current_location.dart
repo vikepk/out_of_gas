@@ -38,7 +38,7 @@ class CurrentlocationState extends State<Currentlocation> {
                       });
                     });
                   },
-                  child: const Text("location")),
+                  child: const Text("location"))
             ],
           ),
         ),
