@@ -8,7 +8,6 @@ import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
 import 'package:out_of_gas/pages/helper_page.dart';
-import 'package:geolocator/geolocator.dart';
 
 class Need_Gas extends StatefulWidget {
   const Need_Gas({super.key});
@@ -22,12 +21,6 @@ var name = TextEditingController();
 var number = TextEditingController();
 var petrol_needed = TextEditingController();
 var location = TextEditingController();
-const List<String> list = <String>['Petrol', 'Diesel'];
-String dropdownValue = list.first;
-String locationmessage = "this is a location message";
-late String lat;
-
-late String long;
 
 class _Need_GasState extends State<Need_Gas> {
   @override
@@ -133,50 +126,6 @@ class _Need_GasState extends State<Need_Gas> {
             SizedBox(
               height: 40,
             ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "       Fuel Type :",
-                style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.blue[900],
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-              child: DropdownButton<String>(
-                isExpanded: true,
-                hint: Text("Type of Fuel"),
-                value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
-                elevation: 16,
-                style: const TextStyle(color: Colors.blue),
-                underline: Container(
-                  height: 2,
-                  color: Colors.blue,
-                ),
-                onChanged: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                items: list.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Container(
@@ -205,8 +154,8 @@ class _Need_GasState extends State<Need_Gas> {
                         ),
                         // labelText: "Blood Group",
                         errorText:
-                            _validate ? 'Fuel Quantity is Required' : null,
-                        hintText: "Fuel Needed",
+                            _validate ? 'Petrol Quantity is Required' : null,
+                        hintText: "Petrol Needed",
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide:
@@ -236,8 +185,6 @@ class _Need_GasState extends State<Need_Gas> {
                 child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        print(value);
-
                         return 'Please enter some text';
                       }
                       return null;
@@ -264,18 +211,6 @@ class _Need_GasState extends State<Need_Gas> {
             SizedBox(
               height: 30,
             ),
-            Text(locationmessage),
-            ElevatedButton(
-                onPressed: () {
-                  getuserlocation().then((value) {
-                    lat = '${value.latitude}';
-                    long = '${value.longitude}';
-                    setState(() {
-                      locationmessage = '$lat and $long';
-                    });
-                  });
-                },
-                child: const Text("GPS Location")),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -318,25 +253,4 @@ class _Need_GasState extends State<Need_Gas> {
       ),
     );
   }
-}
-
-Future<Position> getuserlocation() async {
-  bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    return Future.error("Location service is disabled");
-  }
-
-  LocationPermission permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error("Location Permission is disabled");
-    }
-  }
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error(
-        "Location Permission is disabled forever , we cannot request permission");
-  }
-
-  return await Geolocator.getCurrentPosition();
 }
