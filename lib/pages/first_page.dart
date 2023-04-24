@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
@@ -8,9 +9,21 @@ import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';
 
 final name1 = TextEditingController();
+late DatabaseReference dbRef;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    dbRef = FirebaseDatabase.instance.ref().child('users');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +71,20 @@ class HomePage extends StatelessWidget {
                       "Need Gas",
                       style: TextStyle(color: Colors.white),
                     ),
+                  ),
+                  TextField(
+                    controller: name1,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(labelText: "Name"),
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      var Name = {'name': name1.text};
+                      dbRef.push().set(Name);
+                      print(Name);
+                    },
+                    child: Text("Insert"),
+                    color: Colors.amber,
                   ),
                 ],
               ),

@@ -9,6 +9,7 @@ import 'package:out_of_gas/services/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
 import 'package:out_of_gas/pages/helper_page.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Need_Gas extends StatefulWidget {
   const Need_Gas({super.key});
