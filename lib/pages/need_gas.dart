@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
@@ -21,6 +22,8 @@ class Need_Gas extends StatefulWidget {
 bool _validate = false;
 var name = TextEditingController();
 var number = TextEditingController();
+var type = TextEditingController();
+final type1 = "Petrol";
 var petrol_needed = TextEditingController();
 var location = TextEditingController();
 const List<String> list = <String>['Petrol', 'Diesel'];
@@ -31,6 +34,12 @@ late String lat;
 late String long;
 
 class _Need_GasState extends State<Need_Gas> {
+  @override
+  void initState() {
+    super.initState();
+    dbRef = FirebaseDatabase.instance.ref().child('users');
+  }
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -265,14 +274,14 @@ class _Need_GasState extends State<Need_Gas> {
             SizedBox(
               height: 30,
             ),
-            Text(locationmessage),
+            Text(locationmessage as String),
             ElevatedButton(
                 onPressed: () {
                   getuserlocation().then((value) {
                     lat = '${value.latitude}';
                     long = '${value.longitude}';
                     setState(() {
-                      locationmessage = '$lat and $long';
+                      locationmessage = '$lat, $long' as String;
                     });
                   });
                 },
@@ -292,7 +301,15 @@ class _Need_GasState extends State<Need_Gas> {
                     number.text != "" &&
                     petrol_needed.text != "" &&
                     location.text != "") {
-                  print("Oki");
+                  var users = {
+                    'name': name.text,
+                    'number': number.text,
+                    'petrol_type': type1,
+                    'petrol_quantity': petrol_needed.text,
+                    'location': locationmessage,
+                  };
+                  dbRef.push().set(users);
+                  print(users);
                 }
               },
               child: Container(
