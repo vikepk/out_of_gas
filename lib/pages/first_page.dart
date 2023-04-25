@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                         backgroundColor: Colors.blue,
                         textStyle: const TextStyle(fontSize: 30)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/helper');
+                      Navigator.pushNamed(context, '/read_data');
                     },
                     child: Text(
                       "Helper ",

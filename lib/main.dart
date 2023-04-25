@@ -10,6 +10,7 @@ import 'package:out_of_gas/pages/first_page.dart';
 import 'package:out_of_gas/pages/helper_page.dart';
 import 'package:out_of_gas/pages/need_gas.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:out_of_gas/pages/test.dart';
 
 //import 'package:out_of_gas/firebase_options.dart';
 void main() async {
@@ -24,6 +25,7 @@ void main() async {
       '/first': (context) => HomePage(),
       '/location': (context) => Currentlocation(),
       '/need_gas': (context) => Need_Gas(),
+      '/read_data': (context) => ReadData(),
     },
   ));
 }

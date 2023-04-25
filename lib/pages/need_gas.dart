@@ -306,7 +306,8 @@ class _Need_GasState extends State<Need_Gas> {
                     'number': number.text,
                     'petrol_type': type1,
                     'petrol_quantity': petrol_needed.text,
-                    'location': locationmessage,
+                    'lat&long': locationmessage,
+                    'location': location.text,
                   };
                   dbRef.push().set(users);
                   print(users);
