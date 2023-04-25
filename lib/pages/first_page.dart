@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    dbRef = FirebaseDatabase.instance.ref().child('users');
   }
 
   @override
@@ -71,20 +70,6 @@ class _HomePageState extends State<HomePage> {
                       "Need Gas",
                       style: TextStyle(color: Colors.white),
                     ),
-                  ),
-                  TextField(
-                    controller: name1,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(labelText: "Name"),
-                  ),
-                  MaterialButton(
-                    onPressed: () {
-                      var Name = {'name': name1.text};
-                      dbRef.push().set(Name);
-                      print(Name);
-                    },
-                    child: Text("Insert"),
-                    color: Colors.amber,
                   ),
                 ],
               ),

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:out_of_gas/splash_screen.dart';
@@ -7,6 +10,9 @@ import 'package:out_of_gas/services/current_location.dart';
 import 'package:out_of_gas/services/map_utils.dart';
 import 'package:out_of_gas/services/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 const String location = "Junction";
 
@@ -18,6 +24,53 @@ class Helper extends StatefulWidget {
 }
 
 class _HelperState extends State<Helper> {
+  DatabaseReference dbRef = FirebaseDatabase.instance.ref().child("users");
+  List myList = [];
+
+  void initState() {
+    super.initState();
+    readData();
+  }
+
+  bool isLoading = true;
+  List<String> list = [];
+
+  void readData() async {
+    DatabaseEvent event = await dbRef.once();
+
+    //print(event.snapshot.value);
+    var users = event.snapshot.value;
+
+    print(users);
+    String data = users.toString();
+    print(data);
+
+    // Please replace the Database URL
+    // which we will get in “Add Realtime Database”
+    // step with DatabaseURL
+
+    //   var url = "" + "data.json";
+    //   // Do not remove “data.json”,keep it as it is
+    //   try {
+    //     final response = await http.get(Uri.parse(url));
+    //     final extractedData = json.decode(response.body);
+    //     print(extractedData);
+    //     if (extractedData == null) {
+    //       return;
+    //     }
+
+    //     extractedData.forEach((blogId, blogData) {
+    //       list.add(blogData['name']);
+    //     });
+
+    //     setState(() {
+    //       isLoading = false;
+    //     });
+    //   } catch (error) {
+    //     throw error;
+    // // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +101,7 @@ class _HelperState extends State<Helper> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           //(position + 1 ).toString(),
-                          "Location :" + " $location",
+                          "Location :" + " $list['name]",
                           style: TextStyle(fontSize: 24.0),
                         ),
                       ),
