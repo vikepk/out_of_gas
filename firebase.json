@@ -1,0 +1,6 @@
+{
+  "firestore": {
+    "rules": "need_gas.dart",
+    "indexes": "firestore.indexes.json"
+  }
+}
