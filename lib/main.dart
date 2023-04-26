@@ -20,7 +20,7 @@ void main() async {
     debugShowCheckedModeBanner: false,
     initialRoute: '/first',
     routes: {
-      '/map': (context) => Map(),
+      '/map': (context) => Mapdata(),
       '/helper': (context) => Helper(),
       '/first': (context) => HomePage(),
       '/location': (context) => Currentlocation(),

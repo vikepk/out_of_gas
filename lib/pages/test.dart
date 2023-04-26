@@ -29,9 +29,18 @@ class _ReadDataState extends State<ReadData> {
                   child: FirebaseAnimatedList(
                 query: dbRef,
                 itemBuilder: ((context, snapshot, animation, index) {
+                  var data = {
+                    'name': snapshot.child('name').value.toString(),
+                    'location': snapshot.child('location').value.toString(),
+                    'petrol_type':
+                        snapshot.child('petrol_type').value.toString(),
+                    'petrol_quantity':
+                        snapshot.child('petrol_quantity').value.toString(),
+                    'lat&long': snapshot.child('lat&long').value.toString()
+                  };
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/map');
+                      Navigator.pushNamed(context, '/map', arguments: data);
                     },
                     child: Card(
                       //child: Text(snapshot.child('location').value.toString()),
