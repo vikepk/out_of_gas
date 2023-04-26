@@ -1,13 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'package:out_of_gas/splash_screen.dart';
-
-import 'package:out_of_gas/services/current_location.dart';
-
-import 'package:out_of_gas/services/map_utils.dart';
-import 'package:out_of_gas/services/map.dart';
-
 final name1 = TextEditingController();
 late DatabaseReference dbRef;
 
@@ -26,53 +19,87 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.black,
         title: Text("Out of Gas"),
         centerTitle: true,
         elevation: 0,
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: 150,
+          ),
+          Text(
+            "People who wish to  Help others Visit Helper Page",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Center(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        textStyle: const TextStyle(fontSize: 30)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/read_data');
-                    },
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/read_data');
+              },
+              child: Container(
+                  width: w * 0.5,
+                  height: h * 0.08,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage("assets/img1.png"),
+                          fit: BoxFit.cover)),
+                  child: Center(
                     child: Text(
-                      "Helper ",
-                      style: TextStyle(color: Colors.white),
+                      "HELPER",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        textStyle: const TextStyle(fontSize: 25)),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/need_gas');
-                    },
+                  )),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            "People who needs help Visit Need Gas Page",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/need_gas');
+              },
+              child: Container(
+                  width: w * 0.5,
+                  height: h * 0.08,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: AssetImage("assets/img1.png"),
+                          fit: BoxFit.cover)),
+                  child: Center(
                     child: Text(
                       "Need Gas",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  )),
             ),
           ),
         ],

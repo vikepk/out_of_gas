@@ -6,11 +6,12 @@ import 'package:out_of_gas/splash_screen.dart';
 import 'package:out_of_gas/services/current_location.dart';
 
 import 'package:out_of_gas/services/map_utils.dart';
-import 'package:out_of_gas/services/map.dart';
+import 'package:out_of_gas/pages/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
-import 'package:out_of_gas/pages/helper_page.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Need_Gas extends StatefulWidget {
   const Need_Gas({super.key});
@@ -28,7 +29,7 @@ var petrol_needed = TextEditingController();
 var location = TextEditingController();
 const List<String> list = <String>['Petrol', 'Diesel'];
 String dropdownValue = list.first;
-String locationmessage = "this is a location message";
+String locationmessage = "Your location";
 late String lat;
 
 late String long;
@@ -276,14 +277,25 @@ class _Need_GasState extends State<Need_Gas> {
             ),
             Text(locationmessage as String),
             ElevatedButton(
-                onPressed: () {
-                  getuserlocation().then((value) {
+                onPressed: () async {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                        //duration(seconds: 5),
+                        // duration: Duration(seconds: 5),
+                      );
+                    },
+                  );
+                  await getuserlocation().then((value) {
                     lat = '${value.latitude}';
                     long = '${value.longitude}';
                     setState(() {
                       locationmessage = '$lat, $long' as String;
                     });
                   });
+                  Navigator.of(context).pop();
                 },
                 child: const Text("GPS Location")),
             GestureDetector(
@@ -311,6 +323,13 @@ class _Need_GasState extends State<Need_Gas> {
                   };
                   dbRef.push().set(users);
                   print(users);
+                  Navigator.pushNamed(context, '/wait');
+                  name.clear();
+                  number.clear();
+                  // type1.clear();
+                  petrol_needed.clear();
+                  locationmessage = "Your location";
+                  location.clear();
                 }
               },
               child: Container(

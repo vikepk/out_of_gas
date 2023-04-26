@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:out_of_gas/main.dart';
+
 import 'package:out_of_gas/services/map_utils.dart';
 
 int petrol = 2;
