@@ -48,18 +48,21 @@ class _HelperState extends State<Helper> {
     // print(stream);
 
     //final event = await dbRef.once();
-    final event = await dbRef.orderByChild("name").equalTo("Sankari").once();
+    final event = await dbRef.orderByChild("name").once();
 
-    print(event.snapshot.value);
-    var data = jsonEncode(event.snapshot.value);
-    var data1 = jsonDecode(data);
+    //print(event.snapshot.value);
+    //var data = jsonEncode(event.snapshot.value);
+    //var data1 = jsonDecode(data);
 
     // print(data1['NTsT38NIpMAXLBNzrxM'].toString());
-    var users = event.snapshot.value;
-    //print(data);
+    Map users = event.snapshot.value as Map;
+
+    print(users);
 
     //String names = users["name"] as String;
-    // print(users['name']);
+    print(users['-NTyB_pKQmTVc7vfQAwd']['name']);
+    //data = users['0'];
+    print(data);
     // String data = users.toString();
     // print(data);
 

@@ -1,17 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'package:out_of_gas/splash_screen.dart';
-
-import 'package:out_of_gas/services/current_location.dart';
-
-import 'package:out_of_gas/services/map_utils.dart';
-import 'package:out_of_gas/pages/map.dart';
 import 'package:out_of_gas/pages/first_page.dart';
 
 import 'package:geolocator/geolocator.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Need_Gas extends StatefulWidget {
   const Need_Gas({super.key});
