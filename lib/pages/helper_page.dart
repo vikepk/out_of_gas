@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +38,8 @@ class _ReadDataState extends State<ReadData> {
                         snapshot.child('petrol_type').value.toString(),
                     'petrol_quantity':
                         snapshot.child('petrol_quantity').value.toString(),
-                    'lat&long': snapshot.child('lat&long').value.toString()
+                    'lat&long': snapshot.child('lat&long').value.toString(),
+                    'ph_num': snapshot.child('number').value.toString(),
                   };
                   return GestureDetector(
                     onTap: () {

@@ -11,4 +11,13 @@ class Maptutils {
       throw 'Couldnot open map';
     }
   }
+
+  static Future<void> PhoneCall(String num) async {
+    var url = Uri.parse("tel:$num");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

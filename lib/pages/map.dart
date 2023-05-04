@@ -100,6 +100,22 @@ class _MapdataState extends State<Mapdata> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(4),
+                  backgroundColor: Colors.purple),
+              child: const Icon(
+                Icons.call,
+                size: 50,
+              ),
+              onPressed: () {
+                Maptutils.PhoneCall(data['ph_num']);
+              },
+            ),
           ],
         ));
   }
